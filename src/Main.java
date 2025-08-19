@@ -34,11 +34,21 @@ public class Main {
          * Дан список строк с повторами. Добавьте их в HashSet и выведите количество уникальных слов
          */
         System.out.println("1.4. Дан список строк с повторами. Добавьте их в HashSet и выведите количество уникальных слов");
-        List<String> animalsList = new ArrayList<>(List.of("Январь", "Февраль", "Март", "Март", "Март"));
+        List<String> monthList = new ArrayList<>(List.of("Январь", "Февраль", "Март", "Март", "Март"));
         //преобразуем список в HashSet
-        HashSet<String> animalsSet = new HashSet<>(animalsList);
-        System.out.printf("Список (с повторами): %s\n", animalsList);
-        System.out.printf("HashSet (уникальные значения): %s\n", animalsSet);
+        HashSet<String> monthSet = new HashSet<>(monthList);
+        System.out.printf("Список (с повторами): %s\n", monthList);
+        System.out.printf("HashSet (уникальные значения): %s\n", monthSet);
+        Integer countUnique = 0;
+        for (String month : monthSet) {
+            long count = monthList.stream()
+                    .filter(s -> s.equals(month))
+                    .count();
+            if (count == 1) {
+                countUnique++;
+            }
+        }
+        System.out.printf("Список (количество уникальных значений): %s\n", countUnique);
 
         /**
          * Map / HashMap
@@ -71,7 +81,9 @@ public class Main {
          * Измените значение по ключу "English" на 5
          */
         System.out.println("2.3. Измените значение по ключу \"English\" на 5");
-        schoolSubjects.put("English", 5);
+        if (schoolSubjects.containsKey("English")) {
+            schoolSubjects.put("English", 5);
+        }
         System.out.printf("Оценки: %s\n", schoolSubjects);
 
         /**
@@ -146,7 +158,6 @@ public class Main {
         addSynonym(synonyms, "Напиток", "Квас");
         //выведем на экран словарь
         displaySynonyms(synonyms);
-
 
     }
 
