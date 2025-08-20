@@ -1,4 +1,11 @@
-import java.util.*;
+import javax.swing.*;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Collections;
 
 public class Main {
     public static void main(String[] args) {
@@ -110,8 +117,8 @@ public class Main {
         System.out.println("3.1. Анаграммы");
         String firstString = "йцукен некуцй";
         String secondString = "некуцй йцукен";
-        System.out.printf("Строка 1: %s , Мап 1: %s\n", firstString, getStringToCharMap(firstString).keySet());
-        System.out.printf("Строка 2: %s , Мап 2: %s\n", secondString, getStringToCharMap(secondString).keySet());
+        System.out.printf("Строка 1: %s , Мап 1: %s\n", firstString, getStringToCharMap(firstString));
+        System.out.printf("Строка 2: %s , Мап 2: %s\n", secondString, getStringToCharMap(secondString));
         System.out.printf("Содержатся одинаковые символы %s\n", areAnagrams(firstString, secondString) ? "да" : "нет");
 
         /**
@@ -157,7 +164,6 @@ public class Main {
         addSynonym(synonyms, "Напиток", "Квас");
         //выведем на экран словарь
         displaySynonyms(synonyms);
-
     }
 
     //возвращает true, если строки состоят из одинаковых символов
@@ -168,14 +174,20 @@ public class Main {
         firstMap = getStringToCharMap(firstString);
         secondMap = getStringToCharMap(secondString);
         //сравним ключи (символы в первой и второй строке)
-        return firstMap.keySet().equals(secondMap.keySet());
+        return firstMap.equals(secondMap);
     }
 
     // преобразует строку (input) в мап <Character, Integer>
     public static Map<Character, Integer> getStringToCharMap(String input) {
         Map<Character, Integer> map = new HashMap<>();
+        char symbol;
         for (int i = 0; i < input.length(); i++) {
-            map.put(input.charAt(i), i);
+            symbol = input.toUpperCase().charAt(i);
+            if (map.containsKey(symbol)) {
+                map.put(symbol, map.get(symbol) + 1);
+            } else {
+                map.put(symbol, 1);
+            }
         }
         return map;
     }
