@@ -73,8 +73,7 @@ public class Main {
          * Выведите значение по ключу "Math"
          */
         System.out.println("2.2. Выведите значение по ключу \"Math\"");
-        String schoolSubject = "Math";
-        System.out.printf("Предмет: %s, Оценка: %s\n", schoolSubject, schoolSubjects.get(schoolSubject));
+        System.out.printf("Предмет: %s, Оценка: %s\n", "Math", schoolSubjects.get("Math"));
 
         /**
          * 3. Изменение значения
